@@ -4,9 +4,12 @@
     <a>{{title}}</a>
   </div>
   <div class="meta">
-    created on
+    by
+    {{user.username}}
+    on
     {{format_date createdAt}}
     |
-    <p>by {{user.username}}</p>
+    <a href="/post/{{id}}">{{comments.length}}
+      {{format_plural "comment" comments.length}}</a>
   </div>
 </article>

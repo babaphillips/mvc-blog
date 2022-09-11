@@ -4,6 +4,9 @@ module.exports = {
       date
     ).getDate()}/${new Date(date).getFullYear()}`;
   },
+  format_url: (url) => {
+    return url;
+  },
   format_plural: (word, amount) => {
     if (amount !== 1) {
       return `${word}s`;
