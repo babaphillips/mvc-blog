@@ -20,7 +20,7 @@ router.get("/", (req, res) => {
   })
     .then((dbPostData) => {
       const posts = dbPostData.map((post) => post.get({ plain: true }));
-      console.log(posts);
+
       res.render("homepage", {
         posts,
         loggedIn: req.session.loggedIn,
@@ -38,19 +38,17 @@ router.get("/post/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: ["id", "post_text", "title", "created_at"],
     include: [
       {
         model: Comment,
-        attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
-        include: {
-          model: User,
-          attributes: ["username"],
-        },
+        include: [
+          {
+            model: User,
+          },
+        ],
       },
       {
         model: User,
-        attributes: ["username"],
       },
     ],
   })
